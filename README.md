@@ -1,4 +1,4 @@
-# SQL-Injection-Demo
+# SQL-Injection
 
 Bu depo, SQL Injection güvenlik açığını gösteren basit bir web uygulaması içerir. Eğitimsel amaçlarla hazırlanmış olup, güvenlik zafiyetlerini ve bu zafiyetlerin nasıl düzeltilebileceğini göstermek için tasarlanmıştır.
 
