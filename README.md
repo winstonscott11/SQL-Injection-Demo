@@ -50,3 +50,12 @@ query = "SELECT * FROM users WHERE username = '" + username + "' AND password = 
 # Güvenli kod (Fixed)
 query = "SELECT * FROM users WHERE username = ? AND password = ?"
 cursor.execute(query, (username, password))
+
+
+
+
+
+
+
+https://github.com/user-attachments/assets/41d20468-4475-4a30-981b-d568e708f2c3
+
