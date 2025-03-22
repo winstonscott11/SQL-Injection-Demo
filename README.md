@@ -43,6 +43,14 @@ CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H (CVSS Skoru: 9.8 - Kritik)
 
 Güvenli kod örneğinde, SQL injection zafiyeti parametre bağlama (parameterized queries) yöntemi kullanılarak düzeltilmiştir. Bu yöntem, kullanıcı girdisini SQL sorgusundan ayırır ve saldırganların kodu manipüle etmesini engeller.
 
+
+
+
+https://github.com/user-attachments/assets/81cc690e-648d-4f39-86e7-fa469431fbfa
+
+
+
+
 ```python
 # Güvensiz kod (Vulnerable)
 query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
@@ -52,7 +60,6 @@ query = "SELECT * FROM users WHERE username = ? AND password = ?"
 cursor.execute(query, (username, password))
 
 
-https://github.com/user-attachments/assets/eaf68e25-f971-46fc-8e02-25f29c87a0ff
 
 
 
