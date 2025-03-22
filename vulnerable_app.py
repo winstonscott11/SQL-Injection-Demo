@@ -1,14 +1,13 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import sqlite3
-import os
-
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "insecure_default_key")
-
-# Initialize database if it doesn't exist
+app.secret_key = "basic_secret_key_for_demo"
+# Database initialization
 def init_db():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
+    
+    # Create users table if it doesn't exist
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY,
@@ -18,7 +17,7 @@ def init_db():
     )
     ''')
     
-    # Insert sample users if they don't exist
+    # Check if we need to insert sample users
     cursor.execute("SELECT COUNT(*) FROM users")
     if cursor.fetchone()[0] == 0:
         cursor.execute("INSERT INTO users (username, password, role) VALUES (?, ?, ?)", 
@@ -28,13 +27,7 @@ def init_db():
     
     conn.commit()
     conn.close()
-
 @app.route('/')
-def index():
-    if 'username' in session:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('login'))
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -43,12 +36,12 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        # VULNERABLE CODE: Direct SQL injection vulnerability
+        # VULNERABLE CODE: Using string concatenation in SQL query
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
         
-        # Vulnerable query - concatenating user input directly into SQL
-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+        # Insecure query construction - SQL Injection vulnerability
+        query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
         
         try:
             cursor.execute(query)
@@ -65,21 +58,18 @@ def login():
         finally:
             conn.close()
     
-    return render_template('login.html', error=error)
-
+    return render_template('login_simple.html', error=error)
 @app.route('/dashboard')
 def dashboard():
     if 'username' not in session:
         return redirect(url_for('login'))
     
-    return render_template('dashboard.html', username=session['username'], role=session['role'])
-
+    return render_template('dashboard_simple.html', username=session['username'], role=session['role'])
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     session.pop('role', None)
     return redirect(url_for('login'))
-
 if __name__ == '__main__':
     init_db()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
