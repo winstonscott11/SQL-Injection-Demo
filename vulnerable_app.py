@@ -2,12 +2,12 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import sqlite3
 app = Flask(__name__)
 app.secret_key = "basic_secret_key_for_demo"
-# Database initialization
+
 def init_db():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
     
-    # Create users table if it doesn't exist
+    
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY,
@@ -17,7 +17,7 @@ def init_db():
     )
     ''')
     
-    # Check if we need to insert sample users
+    
     cursor.execute("SELECT COUNT(*) FROM users")
     if cursor.fetchone()[0] == 0:
         cursor.execute("INSERT INTO users (username, password, role) VALUES (?, ?, ?)", 
@@ -36,11 +36,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        # VULNERABLE CODE: Using string concatenation in SQL query
+        
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
         
-        # Insecure query construction - SQL Injection vulnerability
+        
         query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
         
         try:
