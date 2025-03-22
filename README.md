@@ -46,8 +46,17 @@ Güvenli kod örneğinde, SQL injection zafiyeti parametre bağlama (parameteriz
 
 
 
+
+
+
 https://github.com/user-attachments/assets/81cc690e-648d-4f39-86e7-fa469431fbfa
 
+
+
+
+
+
+## Videoda görüldüğü gibi username kısmına "admin' --" girilip şifre kısmına herhangi bir şey girildiiğinde yönetici kısmına ulaşılabiliniyor
 
 
 
