@@ -52,10 +52,11 @@ query = "SELECT * FROM users WHERE username = ? AND password = ?"
 cursor.execute(query, (username, password))
 
 
+https://github.com/user-attachments/assets/eaf68e25-f971-46fc-8e02-25f29c87a0ff
 
 
 
 
 
-https://github.com/user-attachments/assets/41d20468-4475-4a30-981b-d568e708f2c3
+
 
