@@ -4,7 +4,7 @@ Bu depo, SQL Injection güvenlik açığını gösteren basit bir web uygulamas�
 
 ## Proje Bileşenleri
 
-1. **Vulnerable_simple.py**: SQL Injection zafiyeti içeren uygulama
+1. **Vulnerable_app.py**: SQL Injection zafiyeti içeren uygulama
 2. **Fixed_svul.py**: SQL Injection zafiyeti düzeltilmiş uygulama
 3. **Db_setup_simple.py**: Veritabanı kurulum betiği
 4. **HTML şablonları**: Login ve dashboard sayfalarının şablonları
